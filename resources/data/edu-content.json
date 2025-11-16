@@ -1,0 +1,503 @@
+{
+  "lessons": [
+    {
+      "id": "eng-vocab-1",
+      "subject": "english",
+      "category": "vocabulary",
+      "translations": {
+        "en": {
+          "title": "Exploring Academic Vocabulary",
+          "summary": "Build confidence with contextualized academic word lists.",
+          "content": "Study a curated list of transition words and academic verbs through short readings and listening clips."
+        },
+        "vi": {
+          "title": "Khám phá từ vựng học thuật",
+          "summary": "Tự tin với danh sách từ học thuật theo ngữ cảnh.",
+          "content": "Học bộ từ chuyển ý và động từ học thuật thông qua bài đọc và đoạn nghe ngắn."
+        }
+      },
+      "resources": ["Printable word cards", "Short podcast"]
+    },
+    {
+      "id": "eng-grammar-1",
+      "subject": "english",
+      "category": "grammar",
+      "translations": {
+        "en": {
+          "title": "Conditional Sentences in Real Life",
+          "summary": "Practice zero to third conditionals with science scenarios.",
+          "content": "Use weather and lab safety situations to analyze if-clauses and main clauses."
+        },
+        "vi": {
+          "title": "Câu điều kiện trong đời sống",
+          "summary": "Luyện các loại câu điều kiện bằng tình huống khoa học.",
+          "content": "Dùng tình huống dự báo thời tiết và an toàn phòng thí nghiệm để phân tích mệnh đề if và mệnh đề chính."
+        }
+      },
+      "resources": ["Interactive timeline", "Mini lab report"]
+    },
+    {
+      "id": "math-algebra-1",
+      "subject": "mathematics",
+      "category": "algebra",
+      "translations": {
+        "en": {
+          "title": "Quadratic Functions in Motion",
+          "summary": "Connect parabolas to projectile motion investigations.",
+          "content": "Model the path of a launched water bottle, calculate vertex, and interpret the discriminant."
+        },
+        "vi": {
+          "title": "Hàm bậc hai trong chuyển động",
+          "summary": "Kết nối parabol với khảo sát chuyển động ném.",
+          "content": "Mô hình quỹ đạo của chai nước được phóng, tính đỉnh và giải thích biệt thức."
+        }
+      },
+      "resources": ["Graphing calculator", "Video analysis"]
+    },
+    {
+      "id": "physics-energy-1",
+      "subject": "physics",
+      "category": "mechanics",
+      "translations": {
+        "en": {
+          "title": "Energy Transformations Lab",
+          "summary": "Track potential and kinetic energy across systems.",
+          "content": "Use sensors to compare gravitational potential energy with kinetic energy on ramps."
+        },
+        "vi": {
+          "title": "Thí nghiệm chuyển hóa năng lượng",
+          "summary": "Theo dõi thế năng và động năng trong hệ thống.",
+          "content": "Dùng cảm biến để so sánh thế năng hấp dẫn với động năng trên mặt phẳng nghiêng."
+        }
+      },
+      "resources": ["Sensor kit", "Lab sheet"]
+    },
+    {
+      "id": "chemistry-bonding-1",
+      "subject": "chemistry",
+      "category": "bonding",
+      "translations": {
+        "en": {
+          "title": "Visualizing Ionic and Covalent Bonds",
+          "summary": "Use molecular kits to compare bond types.",
+          "content": "Construct lattice and molecule models, then explain melting point differences."
+        },
+        "vi": {
+          "title": "Quan sát liên kết ion và cộng hóa trị",
+          "summary": "Dùng bộ mô hình phân tử để so sánh các kiểu liên kết.",
+          "content": "Xây mô hình tinh thể và phân tử, sau đó giải thích sự khác biệt điểm nóng chảy."
+        }
+      },
+      "resources": ["Molecular kit", "Video walkthrough"]
+    },
+    {
+      "id": "biology-genetics-1",
+      "subject": "biology",
+      "category": "genetics",
+      "translations": {
+        "en": {
+          "title": "Modeling Heredity with Punnett Squares",
+          "summary": "Investigate dominant and recessive traits in local plants.",
+          "content": "Collect fast plant data and calculate genotype probabilities with Punnett squares."
+        },
+        "vi": {
+          "title": "Mô hình di truyền với bảng Punnett",
+          "summary": "Khảo sát tính trạng trội và lặn ở cây địa phương.",
+          "content": "Thu thập dữ liệu cây phát triển nhanh và tính xác suất kiểu gen bằng bảng Punnett."
+        }
+      },
+      "resources": ["Punnett template", "Student notebook"]
+    },
+    {
+      "id": "earth-science-climate-1",
+      "subject": "earth-science",
+      "category": "climate",
+      "translations": {
+        "en": {
+          "title": "Reading Climate Graphs",
+          "summary": "Interpret temperature and rainfall trends across Vietnam.",
+          "content": "Analyze climographs for Hanoi, Da Nang, and Ho Chi Minh City to explain monsoon seasons."
+        },
+        "vi": {
+          "title": "Đọc biểu đồ khí hậu",
+          "summary": "Phân tích xu hướng nhiệt độ và lượng mưa trên khắp Việt Nam.",
+          "content": "Phân tích biểu đồ khí hậu của Hà Nội, Đà Nẵng và TP. HCM để giải thích mùa gió mùa."
+        }
+      },
+      "resources": ["Regional maps", "Teacher slides"]
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "quiz-english-1",
+      "subject": "english",
+      "translations": {
+        "en": {
+          "question": "Which transition best links contrasting ideas?",
+          "explanation": "\"However\" signals contrast and keeps the sentence formal."
+        },
+        "vi": {
+          "question": "Từ nối nào thể hiện sự tương phản tốt nhất?",
+          "explanation": "\"However\" báo hiệu sự tương phản và giữ câu trang trọng."
+        }
+      },
+      "options": [
+        {
+          "id": "A",
+          "translations": {"en": "Moreover", "vi": "Ngoài ra"},
+          "correct": false
+        },
+        {
+          "id": "B",
+          "translations": {"en": "However", "vi": "Tuy nhiên"},
+          "correct": true
+        },
+        {
+          "id": "C",
+          "translations": {"en": "For example", "vi": "Ví dụ"},
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "quiz-physics-1",
+      "subject": "physics",
+      "translations": {
+        "en": {
+          "question": "What happens to kinetic energy when velocity doubles?",
+          "explanation": "Kinetic energy is proportional to the square of velocity, so it quadruples."
+        },
+        "vi": {
+          "question": "Điều gì xảy ra với động năng khi vận tốc tăng gấp đôi?",
+          "explanation": "Động năng tỉ lệ với bình phương vận tốc nên tăng gấp bốn."
+        }
+      },
+      "options": [
+        {
+          "id": "A",
+          "translations": {"en": "It doubles", "vi": "Tăng gấp đôi"},
+          "correct": false
+        },
+        {
+          "id": "B",
+          "translations": {"en": "It triples", "vi": "Tăng gấp ba"},
+          "correct": false
+        },
+        {
+          "id": "C",
+          "translations": {"en": "It quadruples", "vi": "Tăng gấp bốn"},
+          "correct": true
+        }
+      ]
+    }
+  ],
+  "contests": [
+    {
+      "id": "contest-math-challenge",
+      "subject": "mathematics",
+      "translations": {
+        "en": {
+          "title": "Algebra & Geometry Challenge",
+          "description": "Weekly bilingual contest that mixes coordinate proofs with data storytelling."
+        },
+        "vi": {
+          "title": "Thử thách Đại số & Hình học",
+          "description": "Contest hàng tuần kết hợp chứng minh tọa độ và kể chuyện bằng dữ liệu."
+        }
+      },
+      "questionBanks": [
+        {
+          "id": "qb-math-2024",
+          "type": "question-bank",
+          "url": "https://example.com/math-question-bank.pdf",
+          "translations": {
+            "en": {
+              "title": "2024 Coordinate Geometry Bank",
+              "note": "20 scaffolded problems with bilingual hints."
+            },
+            "vi": {
+              "title": "Ngân hàng Hình học tọa độ 2024",
+              "note": "20 bài tập kèm gợi ý song ngữ."
+            }
+          }
+        }
+      ],
+      "examPapers": [
+        {
+          "id": "exam-math-2023",
+          "type": "exam-paper",
+          "url": "https://example.com/math-exam-paper.pdf",
+          "translations": {
+            "en": {
+              "title": "Mock Exam · Inequalities & Functions",
+              "note": "90-minute paper modeled on national exams."
+            },
+            "vi": {
+              "title": "Đề mô phỏng · Bất đẳng thức & Hàm số",
+              "note": "Đề 90 phút theo cấu trúc thi THPT."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "contest-physics-lab",
+      "subject": "physics",
+      "translations": {
+        "en": {
+          "title": "Physics Lab League",
+          "description": "Teams analyze motion, energy, and waves using bilingual rubrics."
+        },
+        "vi": {
+          "title": "Giải đấu Phòng thí nghiệm Vật lý",
+          "description": "Các đội phân tích chuyển động, năng lượng và sóng với rubic song ngữ."
+        }
+      },
+      "questionBanks": [
+        {
+          "id": "qb-physics-energy",
+          "type": "question-bank",
+          "url": "https://example.com/physics-energy-bank.pdf",
+          "translations": {
+            "en": {
+              "title": "Energy & Momentum Practice Set",
+              "note": "Includes lab-style prompts for data tables."
+            },
+            "vi": {
+              "title": "Bộ luyện tập Năng lượng & Động lượng",
+              "note": "Có câu hỏi dạng phòng thí nghiệm kèm bảng số liệu."
+            }
+          }
+        }
+      ],
+      "examPapers": [
+        {
+          "id": "exam-physics-2024",
+          "type": "exam-paper",
+          "url": "https://example.com/physics-lab-exam.pdf",
+          "translations": {
+            "en": {
+              "title": "Lab Report Contest Paper",
+              "note": "Students explain investigations in English and Vietnamese."
+            },
+            "vi": {
+              "title": "Đề thi báo cáo thí nghiệm",
+              "note": "Học sinh giải thích thí nghiệm bằng Tiếng Anh và Tiếng Việt."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "contest-earth-literacy",
+      "subject": "earth-science",
+      "translations": {
+        "en": {
+          "title": "Earth Literacy Cup",
+          "description": "A thematic contest on climate storytelling and data interpretation."
+        },
+        "vi": {
+          "title": "Cúp Hiểu biết Trái Đất",
+          "description": "Cuộc thi theo chủ đề về kể chuyện khí hậu và đọc hiểu dữ liệu."
+        }
+      },
+      "questionBanks": [
+        {
+          "id": "qb-earth-2024",
+          "type": "question-bank",
+          "url": "https://example.com/earth-question-bank.pdf",
+          "translations": {
+            "en": {
+              "title": "Climate Vocabulary Bank",
+              "note": "Crossword-style prompts and speaking cues."
+            },
+            "vi": {
+              "title": "Ngân hàng từ vựng khí hậu",
+              "note": "Câu hỏi dạng ô chữ và gợi ý thuyết trình."
+            }
+          }
+        }
+      ],
+      "examPapers": [
+        {
+          "id": "exam-earth-2023",
+          "type": "exam-paper",
+          "url": "https://example.com/earth-exam.pdf",
+          "translations": {
+            "en": {
+              "title": "Earth Systems Mock Exam",
+              "note": "Integrates reading comprehension and data response."
+            },
+            "vi": {
+              "title": "Đề mô phỏng Hệ thống Trái Đất",
+              "note": "Kết hợp đọc hiểu và phân tích số liệu."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "dictionary": [
+    {
+      "term": "photosynthesis",
+      "category": "biology",
+      "translations": {
+        "en": {
+          "definition": "Process plants use to convert light into chemical energy."
+        },
+        "vi": {
+          "definition": "Quá trình cây chuyển đổi ánh sáng thành năng lượng hóa học."
+        }
+      },
+      "related": ["chlorophyll", "glucose"]
+    },
+    {
+      "term": "derivative",
+      "category": "mathematics",
+      "translations": {
+        "en": {
+          "definition": "Rate of change of a function with respect to a variable."
+        },
+        "vi": {
+          "definition": "Tốc độ thay đổi của hàm theo một biến."
+        }
+      },
+      "related": ["slope", "tangent"]
+    },
+    {
+      "term": "density",
+      "category": "physics",
+      "translations": {
+        "en": {
+          "definition": "Mass per unit volume of a substance."
+        },
+        "vi": {
+          "definition": "Khối lượng trên một đơn vị thể tích của chất."
+        }
+      },
+      "related": ["mass", "volume"]
+    },
+    {
+      "term": "covalent bond",
+      "category": "chemistry",
+      "translations": {
+        "en": {
+          "definition": "Chemical bond formed by sharing electron pairs."
+        },
+        "vi": {
+          "definition": "Liên kết hóa học hình thành khi các nguyên tử chia sẻ cặp electron."
+        }
+      },
+      "related": ["ionic bond", "molecule"]
+    },
+    {
+      "term": "monsoon",
+      "category": "earth-science",
+      "translations": {
+          "en": {"definition": "Seasonal wind pattern that brings heavy rainfall."},
+          "vi": {"definition": "Kiểu gió mùa theo mùa mang lại lượng mưa lớn."}
+      },
+      "related": ["climate", "rainfall"]
+    }
+  ],
+  "announcements": [
+    {
+      "id": "announcement-1",
+      "date": "2024-04-10",
+      "translations": {
+        "en": {
+          "title": "STEM Writing Contest Opens",
+          "body": "Submit bilingual essays connecting English and science by May 5."
+        },
+        "vi": {
+          "title": "Phát động cuộc thi viết STEM",
+          "body": "Gửi bài luận song ngữ kết nối tiếng Anh và khoa học trước ngày 5/5."
+        }
+      }
+    },
+    {
+      "id": "announcement-2",
+      "date": "2024-04-18",
+      "translations": {
+        "en": {
+          "title": "New Climate Masterclass",
+          "body": "Earth science team released new climate graph lessons."
+        },
+        "vi": {
+          "title": "Chuyên đề khí hậu mới",
+          "body": "Nhóm khoa học Trái Đất vừa phát hành bài học biểu đồ khí hậu mới."
+        }
+      }
+    }
+  ],
+  "wordOfDay": [
+    {
+      "term": "momentum",
+      "subject": "physics",
+      "translations": {
+        "en": {
+          "definition": "Product of an object's mass and velocity.",
+          "usage": "The astronaut conserved momentum when pushing the satellite."
+        },
+        "vi": {
+          "definition": "Tích của khối lượng và vận tốc của vật.",
+          "usage": "Phi hành gia bảo toàn động lượng khi đẩy vệ tinh."
+        }
+      }
+    },
+    {
+      "term": "analyze",
+      "subject": "english",
+      "translations": {
+        "en": {
+          "definition": "To examine in detail for explanation or interpretation.",
+          "usage": "Analyze the article and highlight signal words."
+        },
+        "vi": {
+          "definition": "Xem xét chi tiết để giải thích hoặc diễn giải.",
+          "usage": "Phân tích bài báo và đánh dấu các từ tín hiệu."
+        }
+      }
+    }
+  ],
+  "leaderboard": [
+    {
+      "student": "Lan",
+      "avatar": "https://ui-avatars.com/api/?name=Lan",
+      "points": 128,
+      "streak": 6,
+      "translations": {
+        "en": {"bio": "Eco Lab captain"},
+        "vi": {"bio": "Trưởng nhóm phòng thí nghiệm môi trường"}
+      }
+    },
+    {
+      "student": "Nam",
+      "avatar": "https://ui-avatars.com/api/?name=Nam",
+      "points": 115,
+      "streak": 4,
+      "translations": {
+        "en": {"bio": "Math contest finalist"},
+        "vi": {"bio": "Chung kết toán học"}
+      }
+    }
+  ],
+  "profiles": [
+    {
+      "name": "Ms. Tran",
+      "role": "English & STEM Coach",
+      "translations": {
+        "en": {"bio": "Supports academic English writing for lab reports."},
+        "vi": {"bio": "Hỗ trợ viết tiếng Anh học thuật cho báo cáo thí nghiệm."}
+      }
+    },
+    {
+      "name": "Mr. Pham",
+      "role": "Physics Mentor",
+      "translations": {
+        "en": {"bio": "Guides maker projects and robotics challenges."},
+        "vi": {"bio": "Hướng dẫn dự án chế tạo và thử thách robot."}
+      }
+    }
+  ]
+}
