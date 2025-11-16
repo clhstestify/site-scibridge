@@ -1,85 +1,85 @@
 # SciBridge Bilingual Learning Hub
 
-SciBridge turns the original Site-Scibridge codebase into a bilingual (English & Vietnamese) learning space that blends English
-language development with the natural sciences and mathematics. All competitive-programming components (problem archive,
-judge backend, submission system, and code checker) have been retired so the site now focuses entirely on bilingual lessons,
-question banks, exam papers, and lightweight quiz contests while keeping the familiar layout and styling of the original project.
+SciBridge is the educational fork of the original Site-Scibridge project. It keeps the same Django layout while transforming the
+experience into a bilingual (English ↔ Vietnamese) classroom that highlights lessons, question banks, quizzes, glossaries, and
+teacher tooling. This README walks you through installing the stack and, more importantly, shows **how to access every education
+feature once the server is running**.
 
-## Highlights
+---
 
-- **Bilingual interface** with a global EN ↔ VI switch that updates navigation copy, announcements, lessons, quizzes, and
-dictionary entries in real time.
-- **Subject coverage** for English, Mathematics, Physics, Chemistry, Biology, and Earth Science with sample lessons combining
-language and STEM literacy.
-- **Dictionary / Glossary** storing bilingual science and math vocabulary plus related terms.
-- **Word of the Day** widget that rotates through sample entries using both languages.
-- **Quiz & Contest arena** showing multiple-choice questions, immediate feedback, and a lightweight leaderboard/profile view.
-- **Contest question banks & exam papers** so teachers can distribute bilingual practice sets without any coding workflow.
-- **Admin staging panel** that lets teachers prototype new lessons, quizzes, and dictionary entries directly in the browser while
-instructing them how to persist data inside `resources/data/edu-content.json`.
-- **Unified search** for lessons, dictionary items, and quizzes in both languages.
-- **Responsive design** that reuses the original styles and media queries from the Site-Scibridge theme.
-
-## Repository structure
-
-All existing file types remain in use:
-
-- `templates/home.html` renders the bilingual home page while extending the default layout.
-- `resources/style.scss` keeps the project styling and now includes the helper classes that power the new sections.
-- `resources/edu.js` loads bilingual content, handles search, quizzes, dictionary rendering, and the admin preview panel.
-- `resources/data/edu-content.json` contains the sample bilingual data for lessons, vocabulary, quizzes, contest question banks &
-  exam papers, announcements, word of the day, leaderboards, and mentor profiles.
-
-## Requirements
-
-- Python ≥ 3.10
-- Node.js ≥ 18 (for optional SCSS compilation)
-- A working virtualenv is recommended.
-
-## Quick start
+## 1. Install and launch the hub
 
 ```bash
-# clone
+# clone and enter the repo
 $ git clone https://github.com/clhstestify/site-scibridge.git
 $ cd site-scibridge
 
-# install python requirements
+# set up python + dependencies
 $ python -m venv .venv && source .venv/bin/activate
 $ pip install -r requirements.txt -r additional_requirements.txt
 
-# migrate and run the Django server on port 5173
+# set up optional front-end toolchain for SCSS
+$ npm install
+
+# run database migrations then launch on port 5173
 $ python manage.py migrate
 $ python manage.py runserver 5173
 ```
 
-The server uses Django's staticfiles pipeline, so the new JavaScript (`resources/edu.js`) and data (`resources/data/edu-content.json`)
-are available immediately. When you need to recompile SCSS after making design changes, run:
+Visit `http://localhost:5173/` to reach the bilingual homepage. Django automatically serves the static JavaScript (`resources/edu.js`)
+and the education dataset (`resources/data/edu-content.json`). Whenever you modify `resources/style.scss`, rebuild it with:
 
 ```bash
-$ npm install
 $ npx sass resources/style.scss resources/style.css
 ```
 
-(Collectstatic will pull the compiled CSS into the production deployment as usual.)
+---
 
-## Using the bilingual interface
+## 2. Navigating the bilingual education interface
 
-1. Open `http://localhost:5173/` to load the SciBridge homepage.
-2. Use the EN/VI toggle in the hero card to swap UI copy, dictionary entries, quiz prompts, feedback messages, and announcements.
-   The script stores the preference in `localStorage` so returning visitors keep their language.
-3. The search bar queries lessons, quizzes, and dictionary entries simultaneously (both languages are indexed).
+1. **Language switcher** – Use the EN/VI toggle in the hero card. All lesson cards, dictionary entries, quizzes, announcements, and
+   feedback copy switch immediately. The choice is stored in `localStorage` so every return visit preserves the language.
+2. **Unified search** – The search bar at the top of the education section queries lessons, quizzes, contests, and glossary entries in
+   both languages simultaneously. Typing either English or Vietnamese keywords surfaces matching cards.
+3. **Responsive layout** – The portal is built on `templates/home.html` with helper styles defined in `resources/style.scss`, so all
+   sections collapse gracefully on phones and tablets.
 
-## Admin & content authoring flow
+---
 
-The Admin panel on the homepage is a client-side staging area:
+## 3. Accessing each education feature
 
-1. Fill out the "Add lesson preview", "Add quiz question", "Add dictionary entry", or "Add contest resources" forms.
-2. Drafts are stored in `localStorage` so teachers can preview the layout and translations without impacting the JSON file.
-3. When the content is ready, open `resources/data/edu-content.json` and append the entry under the matching section. Each
-   object includes bilingual translations under `translations.en` and `translations.vi`.
-4. Commit the updated JSON file so the server ships with the new bilingual content.
+### Lessons & learning paths
+- Scroll to the "Featured Lessons" deck to browse English, Mathematics, Physics, Chemistry, Biology, and Earth Science content.
+- Filter by subject using the dropdown above the cards. Each lesson expands to show bilingual summaries and resource links pulled
+  from `resources/data/edu-content.json`.
+- Use the "Add lesson preview" form in the Admin panel to stage a new card locally before editing the JSON file.
 
-### JSON structure
+### Dictionary / glossary & word of the day
+- Open the "Bilingual Glossary" tab to see science and math vocabulary with contextual notes. Search updates the list instantly.
+- The "Word of the Day" widget sits beside the glossary and rotates through highlighted entries using the same dataset.
+
+### Quizzes, instant feedback, and leaderboard
+- The "Quizzes & Mini Contests" section lists multiple-choice activities. Clicking a card reveals the bilingual question and options.
+- Selecting an answer triggers instant feedback with the explanation translated to the current language.
+- Below the quizzes, the "Community Leaderboard" shows fictional mentors and scores. These rows are fully editable via the JSON
+  file so classrooms can spotlight real participants.
+
+### Contest resources and exam papers
+- The "Contest Library" showcases curated question banks and downloadable exam papers. Each resource exposes bilingual descriptions
+  with outbound links (Google Drive, PDFs, etc.).
+- Teachers can attach resources to the featured contests directly in `resources/data/edu-content.json` under `contests[].questionBanks`
+  and `contests[].examPapers`.
+
+### Announcements, profiles, and community updates
+- The "Announcements" carousel publishes bilingual news items (club meetings, new lesson drops, etc.).
+- The "Mentor Profiles" grid introduces facilitators in both languages to give the hub a personal touch.
+
+### Admin preview & authoring workflow
+1. Locate the "Teacher Staging Panel" on the homepage.
+2. Choose one of the forms (lesson, quiz, dictionary entry, contest resources) and fill out both translations.
+3. Previewed items live only in `localStorage` for the current browser, letting educators iterate safely.
+4. When satisfied, open `resources/data/edu-content.json`, copy the staged object, and paste it into the appropriate array
+   (`lessons`, `quizzes`, `dictionary`, `contests`, `announcements`, etc.). Each item follows the schema shown below.
 
 ```json
 {
@@ -143,38 +143,48 @@ The Admin panel on the homepage is a client-side staging area:
 }
 ```
 
-Add new announcements, dictionary entries, word-of-the-day items, leaderboard rows, and mentor profiles by extending the arrays in
-the same file. Keep both English and Vietnamese translations so the toggle can switch instantly.
+Remember to keep both languages populated—missing translations will cause empty UI states when learners switch languages.
 
-## Retired competitive-programming stack
+---
 
-- Problem statements, online judge hooks, submission queues, and code-checker integrations have been removed from the site surface so the experience now centers on bilingual STEM literacy.
-- Contests now represent question banks and examination papers that can be attached to leaderboards without requiring code execution.
+## 4. Managing users and admin rights
 
-### Admin login / role
+- Use the standard Django admin workflow to create staff accounts:
+  ```bash
+  $ python manage.py createsuperuser
+  ```
+- Teachers log into `/admin/` to manage users, but educational content remains JSON-driven. This separation keeps production data
+  safe while still giving instructors self-service tools via the homepage staging panel.
 
-Use the regular Django admin (`python manage.py createsuperuser`) to manage users, then rely on the homepage Admin card to stage
-new educational resources. Because the staging tool only touches local storage, production data remains safe until a maintainer
-edits `resources/data/edu-content.json` and commits the change.
+---
 
-## Testing & linting
+## 5. Retired competitive-programming stack
 
-The repo keeps all previous Python and JavaScript tooling. Run your preferred checks (flake8, pytest, prettier, etc.) the same
-way as the upstream project. Example:
+The online judge, submission queue, and checker integrations from Site-Scibridge have been intentionally removed. Contests now
+represent curated bilingual question banks or exam paper bundles, so the portal focuses entirely on STEM literacy rather than code
+execution.
+
+---
+
+## 6. Testing & linting
+
+Run the same quality tools as the upstream project:
 
 ```bash
 $ flake8
+$ pytest            # optional, if you add backend logic
 $ npm run format:check
 ```
 
-## Feature checklist
+---
 
-- [x] Bilingual UI text and content
-- [x] EN/VI toggle stored per user
-- [x] Lessons for English, Mathematics, Physics, Chemistry, Biology, Earth Science
-- [x] Bilingual glossary + search + filters
-- [x] Word of the Day
-- [x] Quiz/contest cards with instant feedback + leaderboard
-- [x] Profiles and announcements
-- [x] Admin preview panel with instructions for editing JSON data
-- [x] README instructions for installing, running, and extending the site
+## 7. Feature checklist
+
+- [x] Bilingual UI text and content with EN/VI toggle stored per user
+- [x] Lessons covering English, Mathematics, Physics, Chemistry, Biology, Earth Science
+- [x] Bilingual glossary, search, and Word of the Day
+- [x] Quiz/contest cards with instant feedback plus leaderboard
+- [x] Contest library for question banks & exam papers
+- [x] Announcements and mentor profiles
+- [x] Teacher staging panel + JSON editing workflow
+- [x] README instructions showing how to access every education feature
