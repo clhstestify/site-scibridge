@@ -1,23 +1,246 @@
-{% extends "blog/list.html" %}
-{% block before_posts %}
-    {% if misc_config.home_page_top %}
-        {{ render_django(misc_config.home_page_top, request=request, user_count=user_count, problem_count=problem_count, submission_count=submission_count, language_count=language_count, perms=perms) }}
-    {% endif %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ SITE_LONG_NAME }}{% endblock %}
+
+{% block js_media %}
+    {{ block.super }}
+    <script defer src="{{ static('edu.js') }}" data-app="scibridge-edu"></script>
 {% endblock %}
-{% block meta %}
-    {% if misc_config.meta_description %}
-        <meta name="description" property="og:description" content="{{ misc_config.meta_description }}">
-    {% endif %}
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "url": "{{ DMOJ_SCHEME }}://{{ site.domain }}/",
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": "{{ DMOJ_SCHEME }}://{{ site.domain }}/problems/?search={search_term_string}",
-                "query-input": "required name=search_term_string"
-            }
-        }
-    </script>
+
+{% block content %}
+<div id="education-app" class="content" data-content-url="{{ static('data/edu-content.json') }}">
+    <div class="card hero">
+        <div class="hero-text">
+            <p class="badge" data-i18n="badge">Bilingual STEM Bridge</p>
+            <h1 data-i18n="heroTitle">Learning hub for English + Natural Sciences</h1>
+            <p data-i18n="heroSubtitle">
+                Explore lessons, bilingual vocabulary, and quizzes that connect high school English with mathematics and the
+                sciences.
+            </p>
+            <div class="language-toggle" aria-label="Switch site language">
+                <span data-i18n="languageLabel">Language</span>
+                <button type="button" class="toggle" data-lang="en">EN</button>
+                <button type="button" class="toggle" data-lang="vi">VI</button>
+            </div>
+        </div>
+        <div class="hero-extra">
+            <div class="word-of-day" aria-live="polite">
+                <h2 data-i18n="wordOfDayHeading">Word of the day</h2>
+                <p class="term" id="word-of-day-term">Momentum</p>
+                <p class="definition" id="word-of-day-definition"></p>
+                <p class="usage" id="word-of-day-usage"></p>
+            </div>
+            <div class="search-panel">
+                <label for="global-search" data-i18n="searchLabel">Search bilingual lessons, quizzes, dictionary</label>
+                <input id="global-search" name="search" type="search" placeholder="photosynthesis / động lượng">
+                <div id="search-results" class="search-results" aria-live="polite"></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="announcements card" aria-labelledby="announcement-heading">
+        <div class="section-heading">
+            <h2 id="announcement-heading" data-i18n="announcementHeading">Announcements</h2>
+            <p data-i18n="announcementSubheading">News for English, Math, and Science programs.</p>
+        </div>
+        <div id="announcement-list" class="announcement-list"></div>
+    </section>
+
+    <section class="subjects card" aria-labelledby="subjects-heading">
+        <div class="section-heading">
+            <h2 id="subjects-heading" data-i18n="subjectHeading">Featured bilingual lessons</h2>
+            <p data-i18n="subjectSubheading">Each tile combines English literacy with STEM thinking.</p>
+        </div>
+        <div id="lesson-grid" class="edu-grid"></div>
+    </section>
+
+    <section class="dictionary card" aria-labelledby="dictionary-heading">
+        <div class="section-heading">
+            <h2 id="dictionary-heading" data-i18n="dictionaryHeading">Bilingual science glossary</h2>
+            <p data-i18n="dictionarySubheading">Find key terms for lab reports, math proofs, and presentations.</p>
+        </div>
+        <div class="dictionary-controls">
+            <input type="search" id="dictionary-search" placeholder="kinetic energy / năng lượng động" aria-label="Dictionary search">
+            <select id="dictionary-filter">
+                <option value="all" data-i18n="allSubjects">All subjects</option>
+                <option value="english">English</option>
+                <option value="mathematics">Mathematics</option>
+                <option value="physics">Physics</option>
+                <option value="chemistry">Chemistry</option>
+                <option value="biology">Biology</option>
+                <option value="earth-science">Earth Science</option>
+            </select>
+        </div>
+        <div id="dictionary-entries" class="dictionary-list"></div>
+    </section>
+
+    <section class="quiz card" aria-labelledby="quiz-heading">
+        <div class="section-heading">
+            <h2 id="quiz-heading" data-i18n="quizHeading">Quiz & Contest Arena</h2>
+            <p data-i18n="quizSubheading">Instant feedback in both languages with a lightweight leaderboard.</p>
+        </div>
+        <div id="quiz-wrapper"></div>
+        <div class="leaderboard">
+            <h3 data-i18n="leaderboardHeading">Leaderboard</h3>
+            <ul id="leaderboard-list"></ul>
+        </div>
+        <div class="contest-resources-block">
+            <h3 data-i18n="contestResourcesHeading">Contest question banks &amp; exam papers</h3>
+            <p data-i18n="contestResourcesNote">
+                Teachers curate bilingual practice sets and mock exams for each subject contest.
+            </p>
+            <div id="contest-resources" class="contest-resources" aria-live="polite"></div>
+        </div>
+    </section>
+
+    <section class="profiles card" aria-labelledby="profile-heading">
+        <div class="section-heading">
+            <h2 id="profile-heading" data-i18n="profileHeading">Mentors & Student Spotlights</h2>
+            <p data-i18n="profileSubheading">Celebrate bilingual scientists and language ambassadors.</p>
+        </div>
+        <div id="profile-grid" class="edu-grid"></div>
+    </section>
+
+    <section class="admin card" aria-labelledby="admin-heading">
+        <div class="section-heading">
+            <h2 id="admin-heading" data-i18n="adminHeading">Admin panel</h2>
+            <p data-i18n="adminSubheading">Teachers can stage updates before publishing to the data file.</p>
+        </div>
+        <div class="admin-wrapper">
+            <!-- The following instructions explain how to add new content. Keep this block updated when content structure changes. -->
+            <aside class="admin-help">
+                <h3 data-i18n="adminHelpHeading">How to add new content</h3>
+                <ol>
+                    <li data-i18n="adminHelpStep1">Use the forms to prototype lessons, quizzes, or dictionary items. Changes stay in local storage for preview.</li>
+                    <li data-i18n="adminHelpStep2">Open <code>resources/data/edu-content.json</code> to permanently add bilingual data (EN + VI fields).</li>
+                    <li data-i18n="adminHelpStep3">Commit updates so every server receives the new bilingual resources.</li>
+                </ol>
+                <p data-i18n="toggleHelp">The EN ↔ VI toggle switches UI text and content translations instantly.</p>
+            </aside>
+            <div class="admin-forms">
+                <form id="admin-lesson-form">
+                    <h4 data-i18n="adminLessonForm">Add lesson preview</h4>
+                    <label>
+                        <span data-i18n="adminSubject">Subject</span>
+                        <select name="subject">
+                            <option value="english">English</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="physics">Physics</option>
+                            <option value="chemistry">Chemistry</option>
+                            <option value="biology">Biology</option>
+                            <option value="earth-science">Earth Science</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span data-i18n="adminTitleEn">Title (English)</span>
+                        <input name="titleEn" required>
+                    </label>
+                    <label>
+                        <span data-i18n="adminTitleVi">Title (Vietnamese)</span>
+                        <input name="titleVi" required>
+                    </label>
+                    <button type="submit" class="button primary" data-i18n="adminAddLesson">Preview lesson</button>
+                </form>
+                <form id="admin-quiz-form">
+                    <h4 data-i18n="adminQuizForm">Add quiz question</h4>
+                    <label>
+                        <span data-i18n="adminQuizSubject">Subject</span>
+                        <select name="subject">
+                            <option value="english">English</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="physics">Physics</option>
+                            <option value="chemistry">Chemistry</option>
+                            <option value="biology">Biology</option>
+                            <option value="earth-science">Earth Science</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span data-i18n="adminQuestion">Question (EN)</span>
+                        <input name="questionEn" required>
+                    </label>
+                    <label>
+                        <span data-i18n="adminQuestionVi">Question (VI)</span>
+                        <input name="questionVi" required>
+                    </label>
+                    <button type="submit" class="button" data-i18n="adminAddQuiz">Preview quiz</button>
+                </form>
+                <form id="admin-dictionary-form">
+                    <h4 data-i18n="adminDictionaryForm">Add dictionary entry</h4>
+                    <label>
+                        <span data-i18n="adminTerm">Term</span>
+                        <input name="term" required>
+                    </label>
+                    <label>
+                        <span data-i18n="adminDefinitionEn">Definition (EN)</span>
+                        <textarea name="definitionEn" rows="2" required></textarea>
+                    </label>
+                    <label>
+                        <span data-i18n="adminDefinitionVi">Definition (VI)</span>
+                        <textarea name="definitionVi" rows="2" required></textarea>
+                    </label>
+                    <button type="submit" class="button" data-i18n="adminAddDictionary">Preview entry</button>
+                </form>
+                <form id="admin-contest-form">
+                    <h4 data-i18n="adminContestForm">Add contest resources</h4>
+                    <label>
+                        <span data-i18n="adminContestSubject">Subject</span>
+                        <select name="subject">
+                            <option value="english">English</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="physics">Physics</option>
+                            <option value="chemistry">Chemistry</option>
+                            <option value="biology">Biology</option>
+                            <option value="earth-science">Earth Science</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span data-i18n="adminContestTitleEn">Contest title (EN)</span>
+                        <input name="contestTitleEn" required>
+                    </label>
+                    <label>
+                        <span data-i18n="adminContestTitleVi">Contest title (VI)</span>
+                        <input name="contestTitleVi" required>
+                    </label>
+                    <label>
+                        <span data-i18n="adminContestDescriptionEn">Contest notes (EN)</span>
+                        <textarea name="contestDescriptionEn" rows="2"></textarea>
+                    </label>
+                    <label>
+                        <span data-i18n="adminContestDescriptionVi">Contest notes (VI)</span>
+                        <textarea name="contestDescriptionVi" rows="2"></textarea>
+                    </label>
+                    <label>
+                        <span data-i18n="adminContestType">Resource type</span>
+                        <select name="resourceType">
+                            <option value="question-bank" data-i18n="adminContestQuestionBank">Question bank</option>
+                            <option value="exam-paper" data-i18n="adminContestExamPaper">Exam paper</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span data-i18n="adminResourceTitleEn">Resource title (EN)</span>
+                        <input name="resourceTitleEn" required>
+                    </label>
+                    <label>
+                        <span data-i18n="adminResourceTitleVi">Resource title (VI)</span>
+                        <input name="resourceTitleVi" required>
+                    </label>
+                    <label>
+                        <span data-i18n="adminResourceNoteEn">Notes (EN)</span>
+                        <textarea name="resourceNoteEn" rows="2"></textarea>
+                    </label>
+                    <label>
+                        <span data-i18n="adminResourceNoteVi">Notes (VI)</span>
+                        <textarea name="resourceNoteVi" rows="2"></textarea>
+                    </label>
+                    <label>
+                        <span data-i18n="adminResourceUrl">Link</span>
+                        <input name="resourceUrl" type="url" placeholder="https://" required>
+                    </label>
+                    <button type="submit" class="button" data-i18n="adminAddContestResource">Preview contest resource</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}
